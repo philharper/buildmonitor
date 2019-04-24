@@ -1,0 +1,53 @@
+.background-blue, .background-blue_anime {
+    background-color: green;
+}
+
+.background-disabled {
+    background-color: darkgrey;
+}
+
+.background-aborted {
+    background-color: orange;
+}
+
+.background-red, .background-red_anime {
+    background-color: red;
+}
+
+.background-yellow {
+    background-color: yellow;
+}
+
+.background-notbuilt {
+    background-color: lightgrey;
+}
+
+.job {
+    height: 150px;
+    width: 30%;
+    min-width: 300px;
+    margin: 25px;
+    text-align: center;
+    float: left;
+    position: relative;
+}
+
+.progress {
+    position:absolute;
+    bottom:10;
+    width: 90%;
+    margin-left: 5%;
+}
+
+#title {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+body {
+    background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px, radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828 !important;
+    background-size:16px 16px;
+}
