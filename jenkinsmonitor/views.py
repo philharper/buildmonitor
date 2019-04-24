@@ -12,15 +12,10 @@ def monitor(request, monitor_id):
     jenkins_service = JenkinsService()
     monitor_service = MonitorService()
 
-    jobs_list = monitor_service.get_jobs_list(monitor_id)
     jenkins_jobs = []
 
-    for job in jobs_list:
+    for job in monitor_service.get_jobs_list(monitor_id):
         job = jenkins_service.get_jenkins_job(job)
         jenkins_jobs.append(job)
 
-    context = {
-        'jobs': jenkins_jobs
-    }
-
-    return render(request, 'jenkins/monitor.html', context)
+    return render(request, 'jenkins/monitor.html', { 'jobs': jenkins_jobs })

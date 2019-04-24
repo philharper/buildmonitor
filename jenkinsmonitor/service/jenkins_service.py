@@ -4,6 +4,7 @@ import configparser
 
 
 class JenkinsService:
+
     jenkins_server = ""
 
     def __init__(self):
@@ -29,6 +30,4 @@ class JenkinsService:
     def calculate_progress(self, timestamp, estimated_time):
         current_running_time = int(round(time.time() * 1000)) - timestamp
         progress = int(round(current_running_time / estimated_time * 100))
-        print("#####")
-        print(progress)
         return progress
