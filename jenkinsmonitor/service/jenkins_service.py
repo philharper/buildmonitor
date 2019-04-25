@@ -4,7 +4,6 @@ import configparser
 
 
 class JenkinsService:
-
     jenkins_server = ""
 
     def __init__(self):
@@ -17,10 +16,15 @@ class JenkinsService:
         return self.jenkins_server.get_jobs()
 
     def get_jenkins_job(self, name):
-        job = self.jenkins_server.get_job_info(name)
-        job['latest_build'] = self.get_build_info(name, job['lastBuild']['number'])
-        job['latest_build']['progress'] = self.calculate_progress(job['latest_build']['timestamp'],
-                                                                  job['latest_build']['estimatedDuration'])
+        job = ""
+        try:
+            job = self.jenkins_server.get_job_info(name)
+            job['latest_build'] = self.get_build_info(name, job['lastBuild']['number'])
+            job['latest_build']['progress'] = self.calculate_progress(job['latest_build']['timestamp'],
+                                                                      job['latest_build']['estimatedDuration'])
+        except Exception as e:
+            print("There was an error retrieving the job")
+            print(e)
 
         return job
 

@@ -1,5 +1,5 @@
 .background-blue, .background-blue_anime {
-    background-color: green;
+    background-color: lawngreen;
 }
 
 .background-disabled {
@@ -7,15 +7,15 @@
 }
 
 .background-aborted {
-    background-color: orange;
+    background-color: lightgrey;
 }
 
 .background-red, .background-red_anime {
-    background-color: red;
+    background-color: #FF0001;
 }
 
 .background-yellow {
-    background-color: yellow;
+    background-color: #ffcc00;
 }
 
 .background-notbuilt {
@@ -26,10 +26,11 @@
     height: 150px;
     width: 30%;
     min-width: 300px;
-    margin: 25px;
+    margin: 25px 25px 0px 25px;
     text-align: center;
     float: left;
     position: relative;
+    border-radius: .50rem!important;
 }
 
 .progress {
@@ -44,6 +45,16 @@
     text-align: center;
     font-size: 50px;
     margin-top: 20px;
+}
+
+#sonar-tile {
+    width: 70%;
+    height: 100px;
+    margin-left: 15%;
+    background-color: grey;
+    bottom: 10;
+    position: absolute;
+    border-radius: .50rem!important;
 }
 
 body {

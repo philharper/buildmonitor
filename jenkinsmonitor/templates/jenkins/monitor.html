@@ -4,10 +4,14 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script>
-            window.onload = async function () {
-                await sleep(10000);
-                location.reload();
-            }
+            // window.onload = async function () {
+            //     await sleep(10000);
+            //     if ({{ monitor_id }} == 1) {
+            //         window.location.replace("http://localhost:8000/jenkins/monitor/2");
+            //     } else {
+            //         window.location.replace("http://localhost:8000/jenkins/monitor/1");
+            //     }
+            // }
 
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
@@ -17,8 +21,8 @@
     <body>
         <h1 id="title">{{title}}</h1>
         {% for job in jobs %}
-            <div class="background-{{ job.color }} job rounded">
-                <h3>{{ job.name }}</h3>
+            <div class="background-{{ job.color }} job">
+                <h3 style="width: 90%; margin: 5%;">{{ job.name }}</h3>
                 {% if job.latest_build.building %}
                     <div class="progress" style="height: 30px;">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{job.latest_build.progress}}%" aria-valuenow="{{job.latest_build.progress}}" aria-valuemin="0" aria-valuemax="100">{{job.latest_build.progress}}%</div>
@@ -26,5 +30,8 @@
                 {% endif %}
             </div>
         {% endfor %}
+        <div id="sonar-tile">
+
+        </div>
     </body>
 </html>
