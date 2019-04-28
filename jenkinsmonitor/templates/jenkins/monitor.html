@@ -49,8 +49,17 @@
                 {% endif %}
             </div>
         {% endfor %}
-<!--        <div id="sonar-tile">-->
-
-<!--        </div>-->
+        <div id="sonar-tile" class="grid-container">
+            <div class="grid-item-1">
+                <img src="{% static 'images/bug.png' %}" style="height:40px; margin-top: 10px">
+                <h2>{{ sonar.bugs.value }}</h2>
+            </div>
+            <div class="grid-item-2">
+                <img src="{% static 'images/violation.svg' %}" style="height:40px; margin-top: 10px">
+                <h2>{{ sonar.violations.value }}</h2></div>
+            <div class="grid-item-3">
+                <img src="{% static 'images/vulnerability.png' %}" style="height:40px; margin-top: 10px">
+                <h2>{{ sonar.bugs.value }}</h2></div>
+        </div>
     </body>
 </html>
