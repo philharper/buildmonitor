@@ -12,12 +12,12 @@
 
             async function loadNextMonitorAfterWait(wait) {
                 await sleep(wait);
-                if ({{ monitor_id }} == 1) {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/2");
-                } else if ({{ monitor_id }} == 2) {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/3");
+                if ('{{ monitor_id }}' == '5cc338388af8fb49d870a72b') {
+                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc36dc5e5de66bb9da603ec");
+                } else if ('{{ monitor_id }}' == '5cc36dc5e5de66bb9da603ec') {
+                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc36dc5e5de66bb9da603ed");
                 } else {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/1");
+                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc338388af8fb49d870a72b");
                 }
             }
 
