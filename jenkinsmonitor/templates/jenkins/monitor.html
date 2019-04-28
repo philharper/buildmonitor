@@ -5,10 +5,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script>
-            window.onload = async function () {
+            window.onload = function () {
                 createClock();
-                
-                await sleep(10000);
+                loadNextMonitorAfterWait(10000)
+            }
+
+            async function loadNextMonitorAfterWait(wait) {
+                await sleep(wait);
                 if ({{ monitor_id }} == 1) {
                     window.location.replace("http://localhost:8000/jenkins/monitor/2");
                 } else if ({{ monitor_id }} == 2) {
@@ -24,10 +27,11 @@
             
             function createClock() {
                 var currentDate = new Date();
-                $('#clock').text(zeroTime(currentDate.getHours()) + ":" + zeroTime(currentDate.getMinutes()));
+                $('#date').text(zeroNumber(currentDate.getDate()) + "/" + zeroNumber(currentDate.getMonth() + 1) + "/" + currentDate.getFullYear())
+                $('#clock').text(zeroNumber(currentDate.getHours()) + ":" + zeroNumber(currentDate.getMinutes()));
             }
 
-            function zeroTime(num) {
+            function zeroNumber(num) {
                 if (num < 10)
                     num = "0" + num;
                 return num;
@@ -36,6 +40,7 @@
     </head>
     <body>
         <div>
+            <h1 id="date">28/04/2019</h1>
             <h1 id="title">{{title}}</h1>
             <h1 id="clock">00:00</h1>
         </div>
@@ -51,15 +56,15 @@
         {% endfor %}
         <div id="sonar-tile" class="grid-container">
             <div class="grid-item-1">
-                <img src="{% static 'images/bug.png' %}" style="height:40px; margin-top: 10px">
+                <img src="{% static 'images/bug.png' %}" class="sonar-icon">
                 <h2>{{ sonar.bugs.value }}</h2>
             </div>
             <div class="grid-item-2">
-                <img src="{% static 'images/violation.svg' %}" style="height:40px; margin-top: 10px">
+                <img src="{% static 'images/violation.svg' %}" class="sonar-icon">
                 <h2>{{ sonar.violations.value }}</h2>
             </div>
             <div class="grid-item-3">
-                <img src="{% static 'images/vulnerability.png' %}" style="height:40px; margin-top: 10px">
+                <img src="{% static 'images/vulnerability.png' %}" class="sonar-icon">
                 <h2>{{ sonar.bugs.value }}</h2>
             </div>
         </div>
