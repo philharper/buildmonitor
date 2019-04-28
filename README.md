@@ -14,7 +14,7 @@ You will also need a properties file named application.properties in the root wi
     [JENKINS]
     url=
     username=
-    password=
+    token=
 
     [SONAR]
     host=

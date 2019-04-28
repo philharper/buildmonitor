@@ -10,7 +10,7 @@ class JenkinsService:
         config = configparser.ConfigParser()
         config.read('application.properties')
         self.jenkins_server = jenkins.Jenkins(config['JENKINS']['url'], username=config['JENKINS']['username'],
-                                              password=config['JENKINS']['password'])
+                                              password=config['JENKINS']['token'])
 
     def get_jenkins_jobs(self):
         return self.jenkins_server.get_jobs()
