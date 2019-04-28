@@ -9,7 +9,7 @@ To run you'll need the following Python libraries installed.
 - requests
 - pymongo
 
-You will also need a properties file with the Jenkins, Sonar and Mongo properties in them as described below.
+You will also need a properties file named application.properties in the root with the Jenkins, Sonar and Mongo properties in them as described below.
 
     [JENKINS]
     url=
