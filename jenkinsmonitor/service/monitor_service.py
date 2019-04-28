@@ -1,18 +1,15 @@
-class MonitorService:
-    targeryen_jobs = {'title': 'House Targaryen - VI',
-                      'jobs': ['VI Data Warehouse - Unit Test', 'Deploy VI Tables and Stored Procedures',
-                               'Run Stored Procedures (DEV)',
-                               'VI Data Warehouse - Integration Test', 'VI Data Warehouse - Acceptance Test',
-                               'Transformation Runner - DAL TC (UAT)', 'Transformation Runner - DAL (LIVE)',
-                               'Transformation Runner - DAL TC (LIVE)'],
-                      'sonar_key': 'com.vistair:vi:vi-data-warehouse'}
-    lannister_jobs = {'title': 'House Lannister - QualityNet',
-                      'jobs': ['Dev Build QualityNet Trunk', 'QualityNet-Sanity-Tests', 'QualityNet Sonar Analysis'],
-                      'sonar_key': 'com.vistair:vi:vi-data-warehouse'}
+from jenkinsmonitor.dao.mongo_dao import MongoDao
 
-    def get_monitor(self, monitor):
+
+class MonitorService:
+
+    @staticmethod
+    def get_monitor(monitor):
+        mongo_dao = MongoDao()
         if monitor == 1:
-            return self.targeryen_jobs
+            return mongo_dao.get_monitor("5cc338388af8fb49d870a72b")
         if monitor == 2:
-            return self.lannister_jobs
-        return []
+            return mongo_dao.get_monitor("5cc36dc5e5de66bb9da603ec")
+        if monitor == 3:
+            return mongo_dao.get_monitor("5cc36dc5e5de66bb9da603ed")
+        return mongo_dao.get_monitor("5cc338388af8fb49d870a72b")
