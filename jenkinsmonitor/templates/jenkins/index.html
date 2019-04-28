@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script>
+        </script>
+    </head>
+    <body>
+        <h1 id="title">Jenkins Build Monitor</h1>
+        <div class="centre-wrapper">
+            <button id="create-new-monitor" onclick="window.location.href = '/jenkins/create';" type="button" class="btn btn-primary btn-lg">Create new monitor</button>
+        </div>
+        <div id="build-monitor-list">
+            <div class="list-group">
+                {% for monitor in monitors %}
+                    <a href="/jenkins/monitor/{{ monitor.id }}" class="list-group-item list-group-item-action">
+                        {{ monitor.title }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
