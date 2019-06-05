@@ -7,22 +7,6 @@
         <script>
             window.onload = function () {
                 createClock();
-                loadNextMonitorAfterWait(10000)
-            }
-
-            async function loadNextMonitorAfterWait(wait) {
-                await sleep(wait);
-                if ('{{ monitor_id }}' == '5cc338388af8fb49d870a72b') {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc36dc5e5de66bb9da603ec");
-                } else if ('{{ monitor_id }}' == '5cc36dc5e5de66bb9da603ec') {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc36dc5e5de66bb9da603ed");
-                } else {
-                    window.location.replace("http://localhost:8000/jenkins/monitor/5cc338388af8fb49d870a72b");
-                }
-            }
-
-            function sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
             }
             
             function createClock() {
@@ -38,34 +22,36 @@
             }
         </script>
     </head>
-    <body>
+    <body >
         <div>
             <h1 id="date">00/00/0000</h1>
-            <h1 id="title">{{title}}</h1>
+            <h1 id="title"><a href="/jenkins">{{title}}</a></h1>
             <h1 id="clock">00:00</h1>
         </div>
-        {% for job in jobs %}
-            <div class="background-{{ job.color }} job">
-                <h3 style="width: 90%; margin: 5%;">{{ job.name }}</h3>
-                {% if job.latest_build.building %}
-                    <div class="progress" style="height: 30px;">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{job.latest_build.progress}}%" aria-valuenow="{{job.latest_build.progress}}" aria-valuemin="0" aria-valuemax="100">{{job.latest_build.progress}}%</div>
-                    </div>
-                {% endif %}
-            </div>
-        {% endfor %}
-        <div id="sonar-tile" class="grid-container">
-            <div class="grid-item-1">
-                <img src="{% static 'images/bug.png' %}" class="sonar-icon">
-                <h2>{{ sonar.bugs.value }}</h2>
-            </div>
-            <div class="grid-item-2">
-                <img src="{% static 'images/violation.svg' %}" class="sonar-icon">
-                <h2>{{ sonar.violations.value }}</h2>
-            </div>
-            <div class="grid-item-3">
-                <img src="{% static 'images/vulnerability.png' %}" class="sonar-icon">
-                <h2>{{ sonar.vulnerabilities.value }}</h2>
+        <div style="width: 100%">
+            {% for job in jobs %}
+                <div class="background-{{ job.color }} job">
+                    <h3 style="width: 90%; margin: 5%;">{{ job.name }}</h3>
+                    {% if job.latest_build.building %}
+                        <div class="progress" style="height: 30px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{job.latest_build.progress}}%" aria-valuenow="{{job.latest_build.progress}}" aria-valuemin="0" aria-valuemax="100">{{job.latest_build.progress}}%</div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div id="sonar-tile" class="grid-container">
+                <div class="grid-item-1">
+                    <img src="{% static 'images/bug.png' %}" class="sonar-icon">
+                    <h2>{{ sonar.bugs.value }}</h2>
+                </div>
+                <div class="grid-item-2">
+                    <img src="{% static 'images/violation.svg' %}" class="sonar-icon">
+                    <h2>{{ sonar.violations.value }}</h2>
+                </div>
+                <div class="grid-item-3">
+                    <img src="{% static 'images/vulnerability.png' %}" class="sonar-icon">
+                    <h2>{{ sonar.vulnerabilities.value }}</h2>
+                </div>
             </div>
         </div>
     </body>

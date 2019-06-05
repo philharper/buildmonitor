@@ -9,7 +9,7 @@ To run you'll need the following Python libraries installed.
 - requests
 - pymongo
 
-You will also need a properties file named application.properties in the root with the Jenkins, Sonar and Mongo properties in them as described below.
+You will also need a properties file named application.properties in the root with the Jenkins, Sonar and DB properties in them as described below. Only place connection properties for one database so that the application is able to determine what type of datasource to use.
 
     [JENKINS]
     url=
@@ -26,3 +26,10 @@ You will also need a properties file named application.properties in the root wi
     port=
     database=
     collection=
+    
+    [MYSQL]
+    host=
+    port=
+    database=
+    user=
+    password=
