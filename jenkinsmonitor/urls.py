@@ -7,4 +7,5 @@ urlpatterns = [
     path('monitor/<monitor_id>', views.monitor, name='monitor'),
     path('create', views.create, name='create'),
     path('create/monitor', views.create_monitor, name='create_monitor'),
+    path('monitor/rotate', views.rotate_monitors, name='rotate_monitors'),
 ]
