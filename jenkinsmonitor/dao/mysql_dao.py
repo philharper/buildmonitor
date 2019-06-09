@@ -40,9 +40,9 @@ class MySqlDao:
 
     def create_monitor(self, monitor):
         cursor = self.mysql_db.cursor()
-        sql = "INSERT INTO monitors (monitor) VALUES ('%s')"
         monitor = monitor.__dict__
         del monitor["id"]
-        cursor.execute(sql, json.dumps(monitor))
+        sql = "INSERT INTO monitors (monitor) VALUES ('" + json.dumps(monitor) + "')"
+        cursor.execute(sql)
 
         self.mysql_db.commit()
