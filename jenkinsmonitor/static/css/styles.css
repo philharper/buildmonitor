@@ -127,6 +127,6 @@ body {
     margin-top: 25px;
 }
 
-a:link, a:visited {
+#title a:link, #title a:visited {
     color: white;
 }
