@@ -8,26 +8,24 @@ class MySqlDao:
 
     config = configparser.ConfigParser()
     config.read('application.properties')
-
-    if config.has_section('MYSQL'):
-        mysql_db = mysql.connector.connect(
-            host=config['MYSQL']['host'],
-            user=config['MYSQL']['user'],
-            port=int(config['MYSQL']['port']),
-            password=config['MYSQL']['password'],
-            database=config['MYSQL']['database'],
-            auth_plugin='mysql_native_password')
+    mysql_db = ""
 
     def get_monitor(self, monitor_id):
+        self.connect()
         cursor = self.mysql_db.cursor()
         cursor.execute("SELECT monitor FROM monitors WHERE id = " + monitor_id)
         result = cursor.fetchall()
+        cursor.close()
+        self.mysql_db.close()
         return json.loads(result[0][0])
 
     def get_monitors(self):
+        self.connect()
         cursor = self.mysql_db.cursor()
         cursor.execute("SELECT * FROM monitors")
         result = cursor.fetchall()
+        cursor.close()
+        self.mysql_db.close()
 
         monitor_list = []
 
@@ -39,6 +37,7 @@ class MySqlDao:
         return monitor_list
 
     def create_monitor(self, monitor):
+        self.connect()
         cursor = self.mysql_db.cursor()
         monitor = monitor.__dict__
         del monitor["id"]
@@ -46,3 +45,15 @@ class MySqlDao:
         cursor.execute(sql)
 
         self.mysql_db.commit()
+        cursor.close()
+        self.mysql_db.close()
+
+    def connect(self):
+        self.mysql_db = mysql.connector.connect(
+            host=self.config['MYSQL']['host'],
+            user=self.config['MYSQL']['user'],
+            port=int(self.config['MYSQL']['port']),
+            password=self.config['MYSQL']['password'],
+            database=self.config['MYSQL']['database'],
+            auth_plugin='mysql_native_password')
+
