@@ -39,20 +39,22 @@
                     {% endif %}
                 </div>
             {% endfor %}
-            <div id="sonar-tile" class="grid-container">
-                <div class="grid-item-1">
-                    <img src="{% static 'images/bug.png' %}" class="sonar-icon">
-                    <h2>{{ sonar.bugs.value }}</h2>
+            {% if sonar.bugs %}
+                <div id="sonar-tile" class="grid-container">
+                    <div class="grid-item-1">
+                        <img src="{% static 'images/bug.png' %}" class="sonar-icon">
+                        <h2>{{ sonar.bugs.value }}</h2>
+                    </div>
+                    <div class="grid-item-2">
+                        <img src="{% static 'images/violation.svg' %}" class="sonar-icon">
+                        <h2>{{ sonar.violations.value }}</h2>
+                    </div>
+                    <div class="grid-item-3">
+                        <img src="{% static 'images/vulnerability.png' %}" class="sonar-icon">
+                        <h2>{{ sonar.vulnerabilities.value }}</h2>
+                    </div>
                 </div>
-                <div class="grid-item-2">
-                    <img src="{% static 'images/violation.svg' %}" class="sonar-icon">
-                    <h2>{{ sonar.violations.value }}</h2>
-                </div>
-                <div class="grid-item-3">
-                    <img src="{% static 'images/vulnerability.png' %}" class="sonar-icon">
-                    <h2>{{ sonar.vulnerabilities.value }}</h2>
-                </div>
-            </div>
+            {% endif %}
         </div>
     </body>
 </html>
