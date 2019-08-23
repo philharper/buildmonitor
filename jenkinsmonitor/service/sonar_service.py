@@ -16,12 +16,17 @@ class SonarService:
 
         sonar_metrics = SonarMetrics()
 
-        for measure in response['component']['measures']:
-            if measure['metric'] == 'bugs':
-                sonar_metrics.bugs = measure
-            if measure['metric'] == 'violations':
-                sonar_metrics.violations = measure
-            if measure['metric'] == 'vulnerabilities':
-                sonar_metrics.vulnerabilities = measure
+        try:
+            for measure in response['component']['measures']:
+                if measure['metric'] == 'bugs':
+                    sonar_metrics.bugs = measure
+                if measure['metric'] == 'violations':
+                    sonar_metrics.violations = measure
+                if measure['metric'] == 'vulnerabilities':
+                    sonar_metrics.vulnerabilities = measure
+
+        except Exception as e:
+            print("There was an error retrieving the sonar metrics")
+            print(e)
 
         return sonar_metrics
