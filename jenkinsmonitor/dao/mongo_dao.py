@@ -3,8 +3,10 @@ import configparser
 import pymongo
 from bson import ObjectId
 
+from jenkinsmonitor.dao.dao import Dao
 
-class MongoDao:
+
+class MongoDao(Dao):
 
     config = configparser.ConfigParser()
     config.read('application.properties')
@@ -26,3 +28,6 @@ class MongoDao:
 
     def create_monitor(self, monitor):
         self.mongo_collection.insert_one(monitor.__dict__)
+
+    def delete_monitor(self, monitor_id):
+        self.mongo_collection.delete_one(self.get_monitor(monitor_id))

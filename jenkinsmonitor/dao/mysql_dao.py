@@ -3,8 +3,10 @@ import json
 
 import mysql.connector
 
+from jenkinsmonitor.dao.dao import Dao
 
-class MySqlDao:
+
+class MySqlDao(Dao):
 
     config = configparser.ConfigParser()
     config.read('application.properties')
