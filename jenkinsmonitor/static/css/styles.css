@@ -118,6 +118,7 @@ body {
     height: 300px;
     background-color: lightgrey;
     text-align: center;
+    font-size: 18px;
 }
 
 .centre-wrapper {
@@ -129,4 +130,13 @@ body {
 
 #title a:link, #title a:visited {
     color: white;
+}
+
+.float-right {
+    float: right;
+    margin-top: -2px;
+}
+
+.danger-button:hover {
+    background-color: red !important;
 }
