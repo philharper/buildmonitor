@@ -40,12 +40,6 @@ def monitor(request, monitor_id):
     return render(request, 'jenkins/monitor.html', context)
 
 
-def rotate_monitors(request):
-    jenkins_service = JenkinsService()
-    monitor_service = MonitorService()
-    sonar_service = SonarService()
-
-
 def create(request):
     return render(request, 'jenkins/create.html', {})
 
@@ -63,5 +57,12 @@ def create_monitor(request):
 
     monitor_service = MonitorService()
     monitor_service.create_monitor(Monitor(0, title, jobs, sonar_key))
+
+    return redirect('/jenkins')
+
+
+def delete_monitor(request, monitor_id):
+    monitor_service = MonitorService()
+    monitor_service.delete_monitor(monitor_id)
 
     return redirect('/jenkins')

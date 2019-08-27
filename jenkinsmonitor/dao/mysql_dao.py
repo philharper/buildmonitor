@@ -48,6 +48,14 @@ class MySqlDao:
         cursor.close()
         self.mysql_db.close()
 
+    def delete_monitor(self, monitor_id):
+        self.connect()
+        cursor = self.mysql_db.cursor()
+        cursor.execute("DELETE FROM monitors WHERE id = " + monitor_id)
+        self.mysql_db.commit()
+        cursor.close()
+        self.mysql_db.close()
+
     def connect(self):
         self.mysql_db = mysql.connector.connect(
             host=self.config['MYSQL']['host'],

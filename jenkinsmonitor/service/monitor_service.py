@@ -32,4 +32,7 @@ class MonitorService:
     def create_monitor(self, monitor):
         self.dao.create_monitor(monitor)
 
+    def delete_monitor(self, monitor_id):
+        self.dao.delete_monitor(monitor_id)
+
 
