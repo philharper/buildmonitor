@@ -5,6 +5,8 @@ from jenkinsmonitor.service.jenkins_service import JenkinsService
 from jenkinsmonitor.service.monitor_service import MonitorService
 from jenkinsmonitor.service.sonar_service import SonarService
 
+from datetime import datetime
+
 
 def index(request):
 
@@ -35,6 +37,8 @@ def monitor(request, monitor_id):
         'title': monitor['title'],
         'sonar': sonar_service.get_job_metrics(monitor['sonar_key']),
         'monitor_id': monitor_id,
+        'date': datetime.now().strftime("%d/%m/%Y"),
+        'time': datetime.now().strftime("%H:%M"),
     }
 
     return render(request, 'jenkins/monitor.html', context)

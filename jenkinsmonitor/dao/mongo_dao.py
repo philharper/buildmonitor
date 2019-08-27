@@ -3,7 +3,7 @@ import configparser
 import pymongo
 from bson import ObjectId
 
-from jenkinsmonitor.dao.dao import Dao
+from jenkinsmonitor.dao.dao_interface import Dao
 
 
 class MongoDao(Dao):

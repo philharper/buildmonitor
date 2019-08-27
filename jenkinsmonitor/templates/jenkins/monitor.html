@@ -5,28 +5,13 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script>
-            window.onload = function () {
-                createClock();
-            }
-            
-            function createClock() {
-                var currentDate = new Date();
-                $('#date').text(zeroNumber(currentDate.getDate()) + "/" + zeroNumber(currentDate.getMonth() + 1) + "/" + currentDate.getFullYear())
-                $('#clock').text(zeroNumber(currentDate.getHours()) + ":" + zeroNumber(currentDate.getMinutes()));
-            }
-
-            function zeroNumber(num) {
-                if (num < 10)
-                    num = "0" + num;
-                return num;
-            }
         </script>
     </head>
     <body >
         <div>
-            <h1 id="date">00/00/0000</h1>
+            <h1 id="date">{{date}}</h1>
             <h1 id="title"><a href="/jenkins">{{title}}</a></h1>
-            <h1 id="clock">00:00</h1>
+            <h1 id="clock">{{time}}</h1>
         </div>
         <div style="width: 100%">
             {% for job in jobs %}

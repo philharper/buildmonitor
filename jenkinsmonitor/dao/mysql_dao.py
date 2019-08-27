@@ -3,7 +3,7 @@ import json
 
 import mysql.connector
 
-from jenkinsmonitor.dao.dao import Dao
+from jenkinsmonitor.dao.dao_interface import Dao
 
 
 class MySqlDao(Dao):
