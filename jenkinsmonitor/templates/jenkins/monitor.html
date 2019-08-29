@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -11,7 +12,7 @@
         <div>
             <h1 id="date">{{date}}</h1>
             <h1 id="title"><a href="/jenkins">{{title}}</a></h1>
-            <h1 id="clock">{{time}}</h1>
+            <h1 id="clock">{% localtime on %}{{time}}{% endlocaltime %}</h1>
         </div>
         <div style="width: 100%">
             {% for job in jobs %}
