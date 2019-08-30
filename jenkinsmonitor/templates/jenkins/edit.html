@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            var i = 1;
+            var i = {{ monitor.jobs|length }} + 1;
 
             $("#add-job").click(function(){
                 $('#job-inputs').append('<input type="text" class="form-control" id="job-input-' + i + '" name="jenkins-job[' + i + ']" placeholder="Enter jenkins jobs">')
