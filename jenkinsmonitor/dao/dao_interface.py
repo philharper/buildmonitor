@@ -18,3 +18,7 @@ class Dao(abc.ABC):
     @abc.abstractmethod
     def delete_monitor(self, monitor_id):
         pass
+
+    @abc.abstractmethod
+    def update_monitor(self, monitor):
+        pass

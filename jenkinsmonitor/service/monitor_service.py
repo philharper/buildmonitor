@@ -35,4 +35,8 @@ class MonitorService:
     def delete_monitor(self, monitor_id):
         self.dao.delete_monitor(monitor_id)
 
+    def update_monitor(self, monitor):
+        self.dao.update_monitor(monitor)
+
+
 

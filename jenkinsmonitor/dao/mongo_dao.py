@@ -31,3 +31,7 @@ class MongoDao(Dao):
 
     def delete_monitor(self, monitor_id):
         self.mongo_collection.delete_one(self.get_monitor(monitor_id))
+
+    def update_monitor(self, monitor):
+        query = {"_id": ObjectId(monitor.id)}
+        self.mongo_collection.update(query, {"$set": monitor.__dict__})

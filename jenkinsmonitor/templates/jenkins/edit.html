@@ -1,0 +1,43 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var i = 1;
+
+            $("#add-job").click(function(){
+                $('#job-inputs').append('<input type="text" class="form-control" id="job-input-' + i + '" name="jenkins-job[' + i + ']" placeholder="Enter jenkins jobs">')
+                i++;
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h1 id="title">Edit Monitor</h1>
+    <form  method="post" style="background-color: lightgray; width: 70%; margin-left: 15%; margin-top: 25px; padding: 25px;" action="{% url 'jenkinsmonitor:edit_monitor' %}">{% csrf_token %}
+        <div class="form-group">
+            <label for="monitor-title-input">Monitor Title</label>
+            <input type="text" class="form-control" id="monitor-title-input" name="monitor-title" value="{{monitor.title}}" >
+        </div>
+        <div class="form-group">
+            <label for="sonar-input">Sonar Key</label>
+            <input type="text" class="form-control" id="sonar-input" name="sonar-key" value="{{monitor.sonar_key}}">
+        </div>
+        <div class="form-group" id="job-list-inputs">
+            <label for="job-input-0">Jenkins Jobs</label>
+            <div id="job-inputs">
+                {% for job in monitor.jobs %}
+                    <input type="text" class="form-control" id="job-input-{{forloop.counter0}}" name="jenkins-job[{{forloop.counter0}}]" value="{{job}}">
+                {% endfor %}
+            </div>
+            <button id="add-job" type="button" class="btn btn-primary btn-sm" style="margin-top: 15px;">Add Job</button>
+        </div>
+        <input type="hidden" name="monitor-id" value="{{ id }}"/>
+        <button class="btn btn-primary" type="submit">Edit Monitor</button>
+    </form>
+</body>
+</html>
