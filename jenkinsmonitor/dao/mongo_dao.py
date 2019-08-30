@@ -11,8 +11,16 @@ class MongoDao(Dao):
     config = configparser.ConfigParser()
     config.read('application.properties')
 
-    mongo_client = pymongo.MongoClient(
-        "mongodb://" + config['MONGO']['host'] + ":" + config['MONGO']['port'])
+    connection_string = "mongodb://{}:{}@{}:{}".format(
+        config['MONGO']['user'],
+        config['MONGO']['password'],
+        config['MONGO']['host'],
+        config['MONGO']['port'])
+
+    print (connection_string)
+
+    mongo_client = pymongo.MongoClient(connection_string)
+    
     mongo_database = mongo_client["buildmonitor"]
     mongo_collection = mongo_database["monitor"]
 
